@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import SectionBotton from '../components/sectionButton'
-
+import HomeTopNewsSection from '../components/homeTopNewsSection'
 
 const Index = () => {
 
@@ -12,10 +12,11 @@ const Index = () => {
 
 
     return (
-        <div>
+        <div style={{padding:50}}>
             <div>
                 <SectionBotton content={'Top News'} type={'topNews'} />
                 <div>
+                <HomeTopNewsSection/>
                     
                 </div>
 

@@ -9,65 +9,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 const client = generateClient();
-
+  
 const Index = () => {
     const [data, setData] = useState([]);
-
-    const columns = [
-        {
-            title: 'image',
-            dataIndex: 'image',
-            width: '25%',
-            editable: false,
-            render: (_, record) => {
-                console.log(record)
-                return 
-            },
-        },
-        {
-            title: 'title',
-            dataIndex: 'title',
-            width: '15%',
-            editable: true,
-        },
-        {
-            title: 'detail',
-            dataIndex: 'detail',
-            width: '40%',
-            editable: true,
-        },
-        {
-            title: 'publishInfo',
-            dataIndex: 'publishInfo',
-            width: '40%',
-            editable: true,
-        },
-        {
-            title: 'operation',
-            dataIndex: 'operation',
-            render: (_, record) => {
-                return (
-                    <span>
-                        <Typography.Link
-                            onClick={() => deleteTopNewsItem(record)}
-                            style={{
-                                marginRight: 8,
-                            }}
-                        >
-                            Delete
-                        </Typography.Link>
-                    </span>
-                );
-            },
-        },
-    ];
-
     useEffect(() => {
         fetchAllTopNews();
     }, [])
-
-
-
     async function fetchAllTopNews() {
         const apiData = await client.graphql({ query: listTopNews });
         const dataListFromAPI = apiData.data.listTopNews.items;
@@ -85,39 +32,31 @@ const Index = () => {
         setData(dataListFromAPI);
     }
     return (
-        <div>
+        <div style={{paddingTop:20}}>
             <Swiper
                 slidesPerView={3}
                 spaceBetween={30}
                 pagination={{
                     clickable: true,
                 }}
-                modules={[Pagination]}
+                // modules={[Pagination]}
                 className="mySwiper"
             >
-                <SwiperSlide>Slide 1</SwiperSlide>
-                {data.map((item)=><SwiperSlide>
+                {data.map((item)=><SwiperSlide style={{backgroundColor:'rgb(18,18,18)',display:'flex',flexDirection:'row',justifyContent:'space-between',height:130,width:320,}}>
                     <Image
-                    width={50}
+                    height={120}
+                    width={70}
                     src={item.image}
                     preview={{
                         src: item.image,
                     }}
                 />
-                <div>
-                    <div>{item.title}</div>
-                    <div>{item.detail}</div>
-                    <div>{item.publishInfo}</div>
+                <div style={{height:130,width:230,display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+                    <div className='topNewsSectionTitle'>{item.title}</div>
+                    <div style={{fontSize:14,textAlign:'right'}}>{item.publishInfo}</div>
                 </div>
                 </SwiperSlide>)}
             </Swiper>
-            <Table
-                rowKey={record => record.id}
-
-                bordered
-                dataSource={data}
-                columns={columns}
-            />
         </div>
     );
 };
