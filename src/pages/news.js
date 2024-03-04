@@ -41,10 +41,12 @@ const Index = ({  }) => {
                 fetchAllTopNews();
                 break;
             case 'TVNews':
-
+                setContent('TV News')
+                fetchAllTopNews();
                 break;
-            case 'MovieNews':
-
+            case 'movieNews':
+                setContent('Movie News')
+                fetchAllTopNews();
                 break;
             default:fetchAllTopNews();
                 break;

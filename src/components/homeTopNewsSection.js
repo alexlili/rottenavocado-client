@@ -4,7 +4,7 @@ import { Image, Button, Table, Typography, Modal } from 'antd';
 import { listTopNews } from "../graphql/queries";
 import { generateClient } from "aws-amplify/api";
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import {useNavigate } from "react-router-dom";
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -12,6 +12,7 @@ const client = generateClient();
   
 const Index = () => {
     const [data, setData] = useState([]);
+    const navigate =useNavigate();
     useEffect(() => {
         fetchAllTopNews();
     }, [])
@@ -57,6 +58,17 @@ const Index = () => {
                 </div>
                 </SwiperSlide>)}
             </Swiper>
+            <div style={{display:'flex',paddingTop:20}}>
+                <div style={{border:'1px solid #fff',borderRadius:20,padding:'3px 8px',marginRight:10,cursor:'pointer'}} onClick={()=>{
+            navigate(`/news/topNews`) 
+        }}>Top news</div>
+                <div style={{border:'1px solid #fff',borderRadius:20,padding:'3px 8px',marginRight:10,cursor:'pointer'}} onClick={()=>{
+            navigate(`/news/movieNews`) 
+        }}>Movie News</div>
+                <div style={{border:'1px solid #fff',borderRadius:20,padding:'3px 8px',marginRight:10,cursor:'pointer'}} onClick={()=>{
+            navigate(`/news/TVNews`) 
+        }}>TV News</div>
+            </div>
         </div>
     );
 };
