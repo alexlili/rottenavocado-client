@@ -113,9 +113,7 @@ const Index = ({}) => {
                 <Image
                   width={200}
                   src={item.image}
-                  preview={{
-                    src: item.image,
-                  }}
+                  preview={false}
                 />
               </div>
               <div style={{ paddingLeft: 20, color: "#000" }}>

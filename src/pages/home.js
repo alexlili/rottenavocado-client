@@ -6,7 +6,7 @@ const Index = () => {
   useEffect(() => {}, []);
 
   return (
-    <div style={{ padding: 50 }}>
+    <div style={{ padding: '50px 70px' }}>
       {/* Home Section */}
       <div>
         <HomeUpNextMediaSection />

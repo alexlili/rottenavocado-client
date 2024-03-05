@@ -3,11 +3,13 @@ import React, { useState, useEffect } from "react";
 import { Image, Button, Table, Typography, Modal } from "antd";
 import { listTopNews } from "../graphql/queries";
 import { generateClient } from "aws-amplify/api";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide} from "swiper/react";
 import { useNavigate } from "react-router-dom";
+import { Navigation } from "swiper/modules";
+import { CaretLeftOutlined,CaretRightOutlined } from '@ant-design/icons';
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/pagination";
+import 'swiper/css/navigation';
 const client = generateClient();
 
 const Index = () => {
@@ -35,13 +37,12 @@ const Index = () => {
   return (
     <div style={{ paddingTop: 20 }}>
       <Swiper
-        navigation={true}
+        navigation={{nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+        disabledClass: 'disable' }}
         slidesPerView={3}
         spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
-        // modules={[Pagination]}
+        modules={[Navigation]}
         className="mySwiper"
       >
         {data.map((item) => (
@@ -56,15 +57,14 @@ const Index = () => {
               justifyContent: "space-between",
               height: 130,
               width: 320,
+              padding:'0 20px'
             }}
           >
             <Image
               height={120}
               width={70}
               src={item.image}
-              preview={{
-                src: item.image,
-              }}
+              preview={false}
             />
             <div
               style={{
@@ -82,6 +82,8 @@ const Index = () => {
             </div>
           </SwiperSlide>
         ))}
+        <div className="swiper-button-prev"><CaretLeftOutlined style={{color:'#f5c518',fontSize:28}}/></div>
+        <div className="swiper-button-next"><CaretRightOutlined style={{color:'#f5c518',fontSize:28}} /></div>
       </Swiper>
       <div style={{ display: "flex", paddingTop: 20 }}>
         <div

@@ -90,7 +90,7 @@ const Index = ({}) => {
           }}
         >
           <div style={{ width: 200 }}>
-            <Image width={200} src={data.image} />
+            <Image width={200} src={data.image} preview={false}/>
           </div>
           <div style={{ paddingLeft: 20, color: "#000" }}>
             <div
