@@ -45,3 +45,10 @@ code {
     overflow: hidden;
 
 }
+
+.swiper-pagination-bullet{
+  background: #fff !important;
+}
+.swiper-pagination-bullet-active{
+  background: #f5c518 !important;
+}

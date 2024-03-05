@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import Home from './pages/home';
-import News from './pages/news';
-import NewsDetail from './pages/newsDetail';
-import reportWebVitals from './reportWebVitals';
-import { Amplify } from 'aws-amplify';
-import config from './aws-exports';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import Home from "./pages/home";
+import News from "./pages/news";
+import NewsDetail from "./pages/newsDetail";
+import reportWebVitals from "./reportWebVitals";
+import { Amplify } from "aws-amplify";
+import config from "./aws-exports";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 Amplify.configure(config);
 
@@ -31,11 +31,11 @@ const router = createBrowserRouter([
       {
         path: "/newsDetail/:type/:id",
         element: <NewsDetail />,
-      }
+      },
     ],
   },
 ]);
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
