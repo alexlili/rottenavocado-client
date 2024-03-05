@@ -1,15 +1,16 @@
 import { getUrl } from 'aws-amplify/storage';
 import React, { useState, useEffect } from 'react';
 import { Image, Button, Table, Typography, Modal, Layout,Flex } from 'antd';
-import { listTopNews } from "../graphql/queries";
+import { listTopNews,listMovieNews,listTVNews } from "../graphql/queries";
 import { generateClient } from "aws-amplify/api";
 import SectionButton from '../components/sectionButton'
 import { NavLink, Outlet, useLocation,useParams} from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 const { Header, Footer, Sider, Content } = Layout;
 const client = generateClient();
 
 const Index = ({  }) => {
-   
+    const navigate =useNavigate();
     const [data, setData] = useState([]);
     const [content,setContent]= useState('');
     const getUrlParams = useParams();
@@ -32,6 +33,39 @@ const Index = ({  }) => {
         );
         setData(dataListFromAPI);
     }
+    async function fetchAllMovieNews() {
+        const apiData = await client.graphql({ query: listMovieNews });
+        const dataListFromAPI = apiData.data.listMovieNews.items;
+        await Promise.all(
+            dataListFromAPI.map(async (note) => {
+                console.log(note)
+                if (note.image) {
+                    const getUrlResult = await getUrl({ key: note.title });
+                    console.log(getUrlResult)
+                    note.image = getUrlResult.url;
+                }
+                return note;
+            })
+        );
+        setData(dataListFromAPI);
+    }
+    async function fetchAllTVNews() {
+        const apiData = await client.graphql({ query: listTVNews });
+        const dataListFromAPI = apiData.data.listTVNews.items;
+        await Promise.all(
+            dataListFromAPI.map(async (note) => {
+                console.log(note)
+                if (note.image) {
+                    const getUrlResult = await getUrl({ key: note.title });
+                    console.log(getUrlResult)
+                    note.image = getUrlResult.url;
+                }
+                return note;
+            })
+        );
+        setData(dataListFromAPI);
+    }
+    
     useEffect(() => {
         
         // console.log(location)
@@ -42,11 +76,11 @@ const Index = ({  }) => {
                 break;
             case 'TVNews':
                 setContent('TV News')
-                fetchAllTopNews();
+                fetchAllTVNews();
                 break;
             case 'movieNews':
                 setContent('Movie News')
-                fetchAllTopNews();
+                fetchAllMovieNews();
                 break;
             default:fetchAllTopNews();
                 break;
@@ -58,7 +92,7 @@ const Index = ({  }) => {
             <Content style={{}}>
             <SectionButton content={content} type={getUrlParams.type} color={'#000'}/>
                 <div style={{ }}>
-                    {data.map((item) => <Flex justify='start' key={item.id} style={{border:'1px solid #ddd',borderRadius:4,padding:10,marginTop:30}}>
+                    {data.map((item) => <Flex justify='start' key={item.id} style={{border:'1px solid #ddd',borderRadius:4,padding:10,marginTop:30}} onClick={()=>{navigate(`/newsDetail/${getUrlParams.type}/${item.id}`)}}>
                        
                        <div style={{width:200}}>
                        <Image

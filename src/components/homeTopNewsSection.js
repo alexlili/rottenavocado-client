@@ -43,7 +43,7 @@ const Index = () => {
                 // modules={[Pagination]}
                 className="mySwiper"
             >
-                {data.map((item)=><SwiperSlide style={{backgroundColor:'rgb(18,18,18)',display:'flex',flexDirection:'row',justifyContent:'space-between',height:130,width:320,}}>
+                {data.map((item)=><SwiperSlide onClick={()=>{navigate(`/newsDetail/topNews/${item.id}`)}} style={{backgroundColor:'rgb(18,18,18)',display:'flex',flexDirection:'row',justifyContent:'space-between',height:130,width:320,}}>
                     <Image
                     height={120}
                     width={70}

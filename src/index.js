@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import Home from './pages/home';
 import News from './pages/news';
+import NewsDetail from './pages/newsDetail';
 import reportWebVitals from './reportWebVitals';
 import { Amplify } from 'aws-amplify';
 import config from './aws-exports';
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/news/:type",
         element: <News />,
+      },
+      {
+        path: "/newsDetail/:type/:id",
+        element: <NewsDetail />,
       }
     ],
   },
