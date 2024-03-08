@@ -1,3 +1,13 @@
+type Movie @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  director: String
+  actor: String
+  name: String
+  year: String
+  imageList: String
+  introduction: String
+}
+
 type BornToday @model @auth(rules: [{allow: public}]) {
   id: ID!
   avatarImage: String

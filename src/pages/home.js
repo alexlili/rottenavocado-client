@@ -4,6 +4,7 @@ import HomeTopNewsSection from "../components/homeTopNewsSection";
 import HomeUpNextMediaSection from "../components/homeUpNextMediaSection";
 import HomeFeaturedTodaySection from "../components/homeFeaturedTodaySection";
 import HomeBornTodaySection from '../components/homeBornTodaySection'
+import HomeMovieSection from '../components/homeMovieSection'
 const Index = () => {
   useEffect(() => {}, []);
 
@@ -17,6 +18,10 @@ const Index = () => {
       <div>
         <div style={{color:'#f5c518',fontSize:40, fontWeight:'bolder'}}>Featured Today</div>
         <HomeFeaturedTodaySection />
+      </div>
+      <div>
+        <div style={{color:'#f5c518',fontSize:40, fontWeight:'bolder'}}>Movies</div>
+        <HomeMovieSection />
       </div>
       <div>
         <div style={{color:'#f5c518',fontSize:40, fontWeight:'bolder'}}>Born Today</div>
