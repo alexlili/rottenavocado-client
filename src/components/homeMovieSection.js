@@ -11,7 +11,7 @@ import {
   CaretRightOutlined,
   StarOutlined,
   StarFilled,
-  PlusOutlined
+  PlusOutlined,
 } from "@ant-design/icons";
 // Import Swiper styles
 import "swiper/css";
@@ -51,7 +51,6 @@ const Index = () => {
         slidesPerView={5}
         spaceBetween={30}
         modules={[Navigation]}
-        className="mySwiper"
       >
         {data.map((item) => (
           <SwiperSlide
@@ -66,31 +65,86 @@ const Index = () => {
               borderRadius: 5,
               overflow: "hidden",
               width: 200,
-              padding: "0 20px",
             }}
           >
-            <Image
-              style={{ borderTopLeftRadius:5,borderTopRightRadius:5}}
-              height={280}
-              width={200}
-              src={item.imageList}
-              preview={false}
-            />
-            <div style={{background:'rgba(255,255,255,0.05)',width:200,padding:12,borderBottomLeftRadius:5,borderBottomRightRadius:5}}>
-            <div style={{textAlign:'left'}}>
-              <StarFilled style={{color:'#f5c518', }}/>
-              <span style={{padding:'0 30px 0 10px',fontWeight:'bold'}}>{(item?.rate||0)}</span>
-              <StarOutlined style={{color:'#f5c518',cursor:'pointer'}}/>
-            </div>
-            <div style={{ fontSize: 16, fontWeight: "bold", padding:'15px 0',textAlign:'left' }}>
-              {item.name}
-            </div>
-            <div style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-evenly',cursor:'pointer', borderRadius:5, fontSize: 16, fontWeight: "bold", padding: 10,background:'rgba(255,255,255,0.1)',color:'#5799ef' }}>
-            <PlusOutlined style={{color:'#f5c518', fontSize:20,fontWeight:'bold'}}/>Watchlist
+            <div style={{ position: "relative" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  zIndex: 2,
+                  cursor: "pointer",
+                  background: "rgba(0,0,0,0.5)",
+                  padding: 5,
+                  borderTopLeftRadius: 5,
+                }}
+              >
+                <PlusOutlined
+                  style={{ fontSize: 20, fontWeight: "bold" }}
+                />
+              </div>
+              <Image
+                style={{
+                  borderTopLeftRadius: 5,
+                  borderTopRightRadius: 5,
+                  position: "relative",
+                  zIndex: 1,
+                }}
+                height={280}
+                width={200}
+                src={item.imageList}
+                preview={false}
+              />
             </div>
 
+            <div
+              style={{
+                background: "rgba(255,255,255,0.05)",
+                width: 200,
+                padding: 12,
+                borderBottomLeftRadius: 5,
+                borderBottomRightRadius: 5,
+              }}
+            >
+              <div style={{ textAlign: "left" }}>
+                <StarFilled style={{ color: "#f5c518" }} />
+                <span style={{ padding: "0 30px 0 10px", fontWeight: "bold" }}>
+                  {item?.rate || 0}
+                </span>
+                <StarOutlined style={{ color: "#f5c518", cursor: "pointer" }} />
+              </div>
+              <div
+                style={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  padding: "15px 0",
+                  textAlign: "left",
+                }}
+              >
+                {item.name}
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-evenly",
+                  cursor: "pointer",
+                  borderRadius: 5,
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  padding: 10,
+                  background: "rgba(255,255,255,0.1)",
+                  color: "#5799ef",
+                }}
+              >
+                <PlusOutlined
+                  style={{ color: "#f5c518", fontSize: 20, fontWeight: "bold" }}
+                />
+                Watchlist
+              </div>
             </div>
-
           </SwiperSlide>
         ))}
         <div className="swiper-button-prev">
