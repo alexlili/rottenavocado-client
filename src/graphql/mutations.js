@@ -1,6 +1,105 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createBornToday = /* GraphQL */ `
+  mutation CreateBornToday(
+    $input: CreateBornTodayInput!
+    $condition: ModelBornTodayConditionInput
+  ) {
+    createBornToday(input: $input, condition: $condition) {
+      id
+      avatarImage
+      name
+      age
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateBornToday = /* GraphQL */ `
+  mutation UpdateBornToday(
+    $input: UpdateBornTodayInput!
+    $condition: ModelBornTodayConditionInput
+  ) {
+    updateBornToday(input: $input, condition: $condition) {
+      id
+      avatarImage
+      name
+      age
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteBornToday = /* GraphQL */ `
+  mutation DeleteBornToday(
+    $input: DeleteBornTodayInput!
+    $condition: ModelBornTodayConditionInput
+  ) {
+    deleteBornToday(input: $input, condition: $condition) {
+      id
+      avatarImage
+      name
+      age
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createFeaturedToday = /* GraphQL */ `
+  mutation CreateFeaturedToday(
+    $input: CreateFeaturedTodayInput!
+    $condition: ModelFeaturedTodayConditionInput
+  ) {
+    createFeaturedToday(input: $input, condition: $condition) {
+      id
+      backgroundImage
+      people
+      title
+      photographerInfo
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateFeaturedToday = /* GraphQL */ `
+  mutation UpdateFeaturedToday(
+    $input: UpdateFeaturedTodayInput!
+    $condition: ModelFeaturedTodayConditionInput
+  ) {
+    updateFeaturedToday(input: $input, condition: $condition) {
+      id
+      backgroundImage
+      people
+      title
+      photographerInfo
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteFeaturedToday = /* GraphQL */ `
+  mutation DeleteFeaturedToday(
+    $input: DeleteFeaturedTodayInput!
+    $condition: ModelFeaturedTodayConditionInput
+  ) {
+    deleteFeaturedToday(input: $input, condition: $condition) {
+      id
+      backgroundImage
+      people
+      title
+      photographerInfo
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createUpNextMedia = /* GraphQL */ `
   mutation CreateUpNextMedia(
     $input: CreateUpNextMediaInput!

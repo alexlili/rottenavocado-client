@@ -1,10 +1,9 @@
 import { getUrl } from "aws-amplify/storage";
 import React, { useState, useEffect } from "react";
-import { Image, Button, Table, Typography, Modal, Layout, Flex } from "antd";
+import { Image, Layout, Flex } from "antd";
 import { getTopNews, getMovieNews, getTVNews } from "../graphql/queries";
 import { generateClient } from "aws-amplify/api";
-import SectionButton from "../components/sectionButton";
-import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 const { Header, Footer, Sider, Content } = Layout;
 const client = generateClient();
 

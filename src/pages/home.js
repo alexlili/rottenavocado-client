@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import SectionBotton from "../components/sectionButton";
 import HomeTopNewsSection from "../components/homeTopNewsSection";
 import HomeUpNextMediaSection from "../components/homeUpNextMediaSection";
+import HomeFeaturedTodaySection from "../components/homeFeaturedTodaySection";
 const Index = () => {
   useEffect(() => {}, []);
 
@@ -10,6 +11,11 @@ const Index = () => {
       {/* Home Section */}
       <div>
         <HomeUpNextMediaSection />
+      </div>
+      {/* Home Section */}
+      <div>
+        <div style={{color:'#f5c518',fontSize:40, fontWeight:'bolder'}}>Featured Today</div>
+        <HomeFeaturedTodaySection />
       </div>
       {/* HomeTopNewsSection */}
       <div>

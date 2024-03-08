@@ -104,6 +104,9 @@ const Index = ({}) => {
                 borderRadius: 4,
                 padding: 10,
                 marginTop: 30,
+                height:300,
+                overflow:'hidden',
+                position:'relative'
               }}
               onClick={() => {
                 navigate(`/newsDetail/${getUrlParams.type}/${item.id}`);
@@ -116,7 +119,7 @@ const Index = ({}) => {
                   preview={false}
                 />
               </div>
-              <div style={{ paddingLeft: 20, color: "#000" }}>
+              <div style={{ paddingLeft: 20, color: "#000",height:280,overflow:'hidden' }}>
                 <div
                   style={{
                     fontSize: 22,
@@ -133,6 +136,10 @@ const Index = ({}) => {
                   {item.publishInfo}
                 </div>
               </div>
+              <div style={{position:'absolute',width:'100%',height:50,textAlign:'right',paddingRight:30,lineHeight:'60px',background:
+                  "linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.9), white)",color:'#000',cursor:'pointer',fontWeight:'bold',bottom:0}} onClick={() => {
+                navigate(`/newsDetail/${getUrlParams.type}/${item.id}`);
+              }}>More...</div>
             </Flex>
           ))}
         </div>
