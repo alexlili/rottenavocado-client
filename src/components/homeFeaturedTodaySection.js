@@ -61,6 +61,7 @@ const Index = () => {
             <Image
               height={170}
               width={280}
+              style={{borderRadius:5}}
               src={item.backgroundImage}
               preview={false}
             />
