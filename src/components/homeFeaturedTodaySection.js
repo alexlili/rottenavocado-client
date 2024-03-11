@@ -41,7 +41,7 @@ const Index = () => {
         prevEl: '.swiper-button-prev',
         disabledClass: 'disable' }}
         slidesPerView={2}
-        spaceBetween={30}
+        spaceBetween={10}
         modules={[Navigation]}
         className="mySwiper"
       >
@@ -52,14 +52,16 @@ const Index = () => {
             }}
             style={{
               backgroundColor: "rgb(18,18,18)",
-              height: 200,
+              height: 230,
               width: 320,
               padding:'0 20px',
-              position:'relative'
+              position:'relative',
+              display:'flex',
+              flexDirection:'column'
             }}
           >
             <Image
-              height={170}
+              height={180}
               width={280}
               style={{borderRadius:5}}
               src={item.backgroundImage}
@@ -67,9 +69,12 @@ const Index = () => {
             />
             <div
               style={{
-                height: 30,
-                width: 280,
-                textAlign:'left'
+                height: 50,
+                textAlign:'center',
+                fontWeight:'bold',
+                display:'flex',
+                justifyContent:'center',
+                alignItems:'center'
               }}
             >
               {item.title}
