@@ -65,6 +65,7 @@ const Index = () => {
       >
         {data.map((item) => (
           <SwiperSlide
+            key={item.id}
             onClick={() => {
               //   navigate(`/newsDetail/topNews/${item.id}`);
             }}

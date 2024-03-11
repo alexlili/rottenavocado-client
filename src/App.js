@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import {
-  HomeOutlined,
-  LogoutOutlined,
   TwitterOutlined,
   MenuOutlined,
   HeartOutlined,
@@ -16,26 +14,29 @@ import {
   Flex,
   ConfigProvider,
   Layout,
-  Menu,
   theme,
-  Breadcrumb,
   Button,
   Input,
+  Modal,
 } from "antd";
 
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
-import { withAuthenticator } from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router-dom";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { getCurrentUser, signOut } from "aws-amplify/auth";
+import { Authenticator } from "@aws-amplify/ui-react";
+
 const { Header, Content, Footer } = Layout;
 const IconFont = createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js",
 });
 const App = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+  const [username, setUsername] = useState(null);
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { colorBgContainer },
   } = theme.useToken();
   // 定义selectedKeys，来控制菜单选中状态和切换页面
   const [selectedKeys, setSelectedKeys] = useState([]);
@@ -47,6 +48,32 @@ const App = () => {
     setSelectedKeys([location.pathname]);
   }, [location]);
   const onSearch = () => {};
+  async function handleSignOut() {
+    try {
+      await signOut();
+      await currentAuthenticatedUser();
+    } catch (error) {
+      console.log("error signing out: ", error);
+    }
+  }
+  async function currentAuthenticatedUser() {
+    try {
+      const { username, userId, signInDetails } = await getCurrentUser();
+      setUsername(username);
+    } catch (err) {
+      setUsername(null);
+      console.log(err);
+    }
+  }
+  useEffect(() => {
+    currentAuthenticatedUser();
+  }, []);
+  const showLoginModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCancelLogin = () => {
+    setIsModalOpen(false);
+  };
   return (
     <ConfigProvider
       theme={{
@@ -115,7 +142,38 @@ const App = () => {
               <HeartOutlined style={{ paddingRight: 5 }} />
               Watchlist
             </div>
-            <div style={{ padding: "0 20px", cursor: "pointer" }}>Sign In</div>
+            {username ? (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <div
+                  style={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    width: 100,
+                  }}
+                >
+                  {username}
+                </div>
+                <div
+                  style={{ padding: "0 20px", cursor: "pointer" }}
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </div>
+              </div>
+            ) : (
+              <div
+                style={{ padding: "0 20px", cursor: "pointer" }}
+                onClick={showLoginModal}
+              >
+                Sign In
+              </div>
+            )}
           </Flex>
         </Header>
         <Content
@@ -299,6 +357,21 @@ const App = () => {
           </div>
         </Footer>
       </Layout>
+      <Modal
+        title=""
+        open={isModalOpen}
+        footer={null}
+        onCancel={handleCancelLogin}
+      >
+        <div style={{ paddingTop: 30 }}>
+          <Authenticator>
+            {({ user }) => {
+              handleCancelLogin();
+              setUsername(user.username);
+            }}
+          </Authenticator>
+        </div>
+      </Modal>
     </ConfigProvider>
   );
 };
